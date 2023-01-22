@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "api-rocketlc"
+version = "0.1.0"
+description = ""
+authors = ["reinanbr <perseu912@gmail.com>"]
+license = "bsdv3"
+readme = "README.md"
+packages = [{include = "api_rocketlc"}]
+
+[tool.poetry.dependencies]
+python = "3.11"
+fastapi = "^0.89.1"
+rocketlc = "^0.0.2"
+uvicorn = "^0.20.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
