@@ -63,7 +63,7 @@ async def users_():
 @app.get('/ssl')
 async def ssl(request:Request):
     user_info = get_user(request.headers)
-    data_lauch =1# sll.launchs()
+    data_lauch = sll.launchs()
     insert_user(user_info)
     
     return {'data':data_lauch,'user_info':user_info}
