@@ -42,7 +42,7 @@ def get_user(client:Request.headers) -> dict:
 
 app = FastAPI(debug=True)
 
-@app.get('/')
+@app.get('/',tags=["Root"])
 async def start(request:Request):
     client = request.headers
     print(client)
