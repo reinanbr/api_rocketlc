@@ -6,6 +6,7 @@ import datetime as dt
 import time
 import os
 import rocketlc.space_schedulle_launch as sll
+from db_sql import insert_user,get_users
 
 def today():
     now = dt.datetime.now()
@@ -15,20 +16,29 @@ def today():
 
 
 def get_user(client:Request.headers) -> dict:
+    tdy = today()
     user = {'ip':client.get('host'),
             'userAgent':client.get('user-agent'),
-            'accept':client.get('accept'),
-            'mobile':client.get("sec-ch-ua-mobile"),
             'lang':client.get("accept-language"),
             'mode':client.get("sec-fetch-mode"),
-            'app':client.get("sec-ch-ua"),
-            'dest':client.get("sec-fetch-dest"),
-            'isUser':client.get("sec-fetch-user"),
             'platform':client.get("sec-ch-ua-platform"),
-            'insecureRequests':client.get("upgrade-insecure-requests"),
-            'site':client.get("sec-fetch-site")}
-    res = {'date':today(),'user':user}
-    return res
+            'navigator':client.get("sec-ch-ua"),
+            'date':tdy['date'],
+            'hour':tdy['hour']
+            }
+            # 'userAgent':client.get('user-agent'),
+            # 'accept':client.get('accept'),
+            # 'mobile':client.get("sec-ch-ua-mobile"),
+            # 'lang':client.get("accept-language"),
+            # 'mode':client.get("sec-fetch-mode"),
+            # 'app':client.get("sec-ch-ua"),
+            # 'dest':client.get("sec-fetch-dest"),
+            # 'isUser':client.get("sec-fetch-user"),
+            # 'platform':client.get("sec-ch-ua-platform"),
+            # 'insecureRequests':client.get("upgrade-insecure-requests"),
+            # 'site':client.get("sec-fetch-site")}
+    
+    return user
 
 
 app = FastAPI(debug=True)
@@ -39,10 +49,23 @@ async def start(request:Request):
     print(client)
     return get_user(client)
 
+
+
+@app.get('/users')
+async def users_():
+    data_users = {}
+    for usr in get_users():
+        data_users[usr[1]] = {'headers':usr[2],'last_date':usr[3],'last_hour':usr[4],'count_acess':usr[5]}
+    return data_users
+
+
+
 @app.get('/ssl')
 async def ssl(request:Request):
     user_info = get_user(request.headers)
-    data_lauch = sll.launchs()
+    data_lauch =1# sll.launchs()
+    insert_user(user_info)
+    
     return {'data':data_lauch,'user_info':user_info}
 # @app.get('/search/bg/{query}')
 # def bg(query:str,page_limit:int,request:Request):
