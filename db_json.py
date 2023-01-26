@@ -16,7 +16,7 @@ def read_db():
 def add_acess(user:dict):
     db = read_db()
     acess = db['acess']
-    acess.append({"ip":user['ip'],'userAgent':user['userAgent'],"date":user['date'],"hour":user['hour']})
+    acess.append({"ip":user['ip'],"url":user['url'],'userAgent':user['userAgent'],"date":user['date'],"hour":user['hour']})
     db['acess'] = acess
     new_data_db = json.dumps(db,indent=4)
     with open(FILE_DB,'w') as file:

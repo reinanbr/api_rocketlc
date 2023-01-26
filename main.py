@@ -16,16 +16,20 @@ def today():
     return {'hour':hour,'date':date}
 
 
-def get_user(client:Request.headers) -> dict:
+def get_user(client:Request) -> dict:
     tdy = today()
-    user = {'ip':client.get('host'),
+    c = client
+    cli = client.client
+    client = client.headers
+    user = {'ip':cli[0],#get('adress'),
             'userAgent':client.get('user-agent'),
             'lang':client.get("accept-language"),
             'mode':client.get("sec-fetch-mode"),
             'platform':client.get("sec-ch-ua-platform"),
             'navigator':client.get("sec-ch-ua"),
             'date':tdy['date'],
-            'hour':tdy['hour']
+            'hour':tdy['hour'],
+            'url':c.url._url
             }
             # 'userAgent':client.get('user-agent'),
             # 'accept':client.get('accept'),
@@ -38,7 +42,7 @@ def get_user(client:Request.headers) -> dict:
             # 'platform':client.get("sec-ch-ua-platform"),
             # 'insecureRequests':client.get("upgrade-insecure-requests"),
             # 'site':client.get("sec-fetch-site")}
-    
+    print(user)
     return user
 
 
@@ -46,27 +50,29 @@ app = FastAPI(debug=True)
 
 @app.get('/',tags=["Root"])
 async def start(request:Request):
-    client = request.headers
+    add_user(get_user(request))
+    client = request.url
     print(client)
+    get_user(request)
     return client # get_user(client)
 
 
 
 @app.get('/db')
-async def users_():
+async def users_(request:Request):
+    add_user(get_user(request))
     return read_db()
 
 
 
 @app.get('/ssl')
 async def ssl(request:Request):
-    print(dir(request))
-    print(request.url)
-    user_info = get_user(request.headers)
+
+    add_user(get_user(request))
     data_lauch = sll.launchs()
-    add_user(user_info)
+
     
-    return {'data':data_lauch,'user_info':user_info}
+    return {'data':data_lauch}
 # @app.get('/search/bg/{query}')
 # def bg(query:str,page_limit:int,request:Request):
 #     ping_init = time.time()
