@@ -5,7 +5,9 @@ import datetime as dt
 import time
 import os
 import rocketlc.space_schedulle_launch as sll
-from db_sql import insert_user,get_users
+# from db_sql import insert_user,get_users
+from db_json import read_db,add_user,add_acess
+
 
 def today():
     now = dt.datetime.now()
@@ -46,24 +48,23 @@ app = FastAPI(debug=True)
 async def start(request:Request):
     client = request.headers
     print(client)
-    return get_user(client)
+    return client # get_user(client)
 
 
 
-@app.get('/users')
+@app.get('/db')
 async def users_():
-    data_users = {}
-    for usr in get_users():
-        data_users[usr[1]] = {'headers':usr[2],'last_date':usr[3],'last_hour':usr[4],'count_acess':usr[5]}
-    return data_users
+    return read_db()
 
 
 
 @app.get('/ssl')
 async def ssl(request:Request):
+    print(dir(request))
+    print(request.url)
     user_info = get_user(request.headers)
     data_lauch = sll.launchs()
-    insert_user(user_info)
+    add_user(user_info)
     
     return {'data':data_lauch,'user_info':user_info}
 # @app.get('/search/bg/{query}')
