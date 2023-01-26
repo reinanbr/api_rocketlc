@@ -1,6 +1,11 @@
+import os
 import json
 
-FILE_DB = 'users_db.json'
+FILE_DB = '/tmp/users_db.json'
+
+if not os.path.isfile(FILE_DB):
+    os.system(f'cp users_db.json {FILE_DB}')
+
 
 def read_db():
     file = open(FILE_DB)
