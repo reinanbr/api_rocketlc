@@ -72,7 +72,14 @@ async def ssl(request:Request):
     data_lauch = sll.launchs()
 
     
-    return {'data':data_lauch}
+    return {
+    'statusCode': 200,
+    'headers': {
+  "Access-Control-Allow-Origin": "*", #Required for CORS support to work
+  "Access-Control-Allow-Credentials": True, #// Required for cookies, authorization headers with HTTPS
+  "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+  "Access-Control-Allow-Methods": "POST, OPTIONS"
+},'body':data_lauch}
 # @app.get('/search/bg/{query}')
 # def bg(query:str,page_limit:int,request:Request):
 #     ping_init = time.time()
