@@ -7,6 +7,7 @@ import os
 import rocketlc.space_schedulle_launch as sll
 # from db_sql import insert_user,get_users
 from db_json import read_db,add_user,add_acess
+from fastapi.middleware.cors import CORSMiddleware
 
 
 def today():
@@ -47,6 +48,16 @@ def get_user(client:Request) -> dict:
 
 
 app = FastAPI(debug=True)
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 @app.get('/',tags=["Root"])
 async def start(request:Request):
