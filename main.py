@@ -43,7 +43,7 @@ def get_user(client:Request) -> dict:
             # 'platform':client.get("sec-ch-ua-platform"),
             # 'insecureRequests':client.get("upgrade-insecure-requests"),
             # 'site':client.get("sec-fetch-site")}
-    print(user)
+    #print(user)
     return user
 
 
@@ -62,10 +62,10 @@ app.add_middleware(
 @app.get('/',tags=["Root"])
 async def start(request:Request):
     add_user(get_user(request))
-    client = request.url
-    print(client)
+    client = request
+    #print(client)
     get_user(request)
-    return client # get_user(client)
+    return client.headers # get_user(client)
 
 
 
