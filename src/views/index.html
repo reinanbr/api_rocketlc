@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações de Lançamentos Espaciais</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; }
+        body {
+            background: radial-gradient(circle at bottom, #000428, #004e92);
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+    <header class="text-center mt-4">
+        <h1 class="text-4xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-md">
+            🌌 Informações de Lançamentos Espaciais 🚀
+        </h1>
+        <p class="text-lg text-gray-300 mt-2">Acompanhe os próximos passos para as estrelas</p>
+        <p>veja a documentação dessa API <a href='/doc'><b>aqui</b></a>.</p>
+    </header>
+
+    <main id="info-container" class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl mx-auto justify-center">
+        <!-- Os cards serão gerados dinamicamente aqui -->
+    </main>
+
+    <footer class="w-full bg-gradient-to-t from-gray-900 to-gray-800 text-gray-300 py-6 mt-10">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+            <div class="flex flex-col items-center sm:items-start">
+                <h2 class="text-2xl font-bold text-indigo-400">🌌 Space Info</h2>
+                <p class="text-sm text-gray-400 mt-2">
+                    Acompanhe os próximos passos da humanidade rumo às estrelas. 🌠
+                </p>
+            </div>
+        </div>
+        <div class="text-center text-gray-500 text-sm mt-6">
+            © 2025 Space Info. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        const apiUrl = '/api/ssl';
+
+        function formatTime(seconds) {
+            const days = Math.floor(seconds / (24 * 3600));
+            const hours = Math.floor((seconds % (24 * 3600)) / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            return `${days} dias, ${hours} horas e ${minutes} minutos`;
+        }
+
+        function formatDate(dateString) {
+            const options = { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+            const date = new Date(dateString.replace(' ', 'T'));
+            return date.toLocaleDateString('pt-BR', options);
+        }
+
+        async function fetchLaunchData() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const container = document.getElementById('info-container');
+                container.innerHTML = "";
+
+                data.forEach(launch => {
+                    const launchElement = document.createElement('div');
+                    launchElement.classList.add("bg-gradient-to-br", "from-gray-800", "to-gray-900", "p-6", "rounded-2xl", "shadow-lg", "hover:scale-105", "transition-transform", "duration-300");
+                    
+                    const formattedTime = formatTime(launch.res_seconds);
+                    const formattedDate = formatDate(launch.datetime);
+
+                    launchElement.innerHTML = `
+                        <h2 class="text-2xl font-bold text-indigo-400 mb-2">${launch.name}</h2>
+                        <p class="text-gray-300"><strong>Missão:</strong> ${launch.mission}</p>
+                        <p class="text-gray-300"><strong>Organização:</strong> ${launch.empire}</p>
+                        <p class="text-gray-300"><strong>Data e Hora:</strong> ${formattedDate}</p>
+                        <p class="text-gray-300"><strong>Localização:</strong> ${launch.location}</p>
+                        <p class="text-gray-300"><strong>Tempo Restante:</strong> ${formattedTime}</p>
+                        <div class="mt-4">
+                            <img src="${launch.img_url}" alt="Imagem do lançamento" class="w-full h-48 object-cover rounded-xl shadow-lg">
+                        </div>
+                    `;
+
+                    container.appendChild(launchElement);
+                });
+            } catch (error) {
+                console.error('Erro ao buscar os dados:', error);
+            }
+        }
+
+        fetchLaunchData();
+    </script>
+</body>
+</html>

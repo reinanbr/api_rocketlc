@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROcketLC API Documentation</title>
+    <link rel="stylesheet" href="/static/css/style.css">  <!-- Arquivo CSS estático -->
+</head>
+<body>
+    <header>
+        <h1>RocketLC API Documentation</h1>
+    </header>
+
+    <div id="doc-container">
+        <h2>API Endpoints</h2>
+
+        <div class="endpoint">
+            <h3>/api/ssl</h3>
+            <p class="summary"><strong>Summary:</strong> Get Info Launch</p>
+            <p class="tags"><strong>Tags:</strong> SSL</p>
+            <p><strong>Example of use it API in 'pt-br' on <a href='/'><b>here</b></a>.</strong></p>
+
+            <div class="request">
+                <h4>Request:</h4>
+                <p><strong>Method:</strong> GET</p>
+                <p><strong>Response Model:</strong> <code>List[LaunchInfo]</code></p>
+                <p><strong>Example Request:</strong></p>
+                <pre>GET /api/ssl</pre>
+            </div>
+
+            <div class="response">
+                <h4>Response:</h4>
+                <p><strong>Success:</strong> List with JSON informations</p>
+                <pre>
+[
+    {
+        "name": "New Shepard",
+        "mission": "NS-29New Shepard",
+        "empire": "Blue Origin",
+        "datetime": "2025-01-28T23:30:00Z",
+        "location": "Corn Ranch, Van Horn, TX, USA",
+        "res_seconds": 75981.54667,
+        "hour": "23:30",
+        "date": "28/01/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/new_shepard_lif_image_20240621062033-1-1024x675.jpeg"
+    },
+    {
+        "name": "GSLV Mk II",
+        "mission": "IRNSS-1K (NVS-02)GSLV Mk II",
+        "empire": "Indian Space Research Organization",
+        "datetime": "2025-01-29T00:53:00Z",
+        "location": "Satish Dhawan Space Centre, India",
+        "res_seconds": 80961.545503,
+        "hour": "00:53",
+        "date": "29/01/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/09/gslv2520mk252_image_20240101090337.jpg"
+    },
+    {
+        "name": "Falcon 9 Block 5",
+        "mission": "SpainSat NG IFalcon 9 Block 5",
+        "empire": "SpaceX",
+        "datetime": "2025-01-30T03:34:00Z",
+        "location": "Kennedy Space Center, FL, USA",
+        "res_seconds": 177021.544397,
+        "hour": "03:34",
+        "date": "30/01/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/12/falcon_9_image_20230807133459-1024x557.jpeg"
+    },
+    {
+        "name": "Falcon 9 Block 5",
+        "mission": "Starlink Group 11-4Falcon 9 Block 5",
+        "empire": "SpaceX",
+        "datetime": "2025-01-31T04:03:00Z",
+        "location": "Vandenberg SFB, CA, USA",
+        "res_seconds": 265161.538164,
+        "hour": "04:03",
+        "date": "31/01/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/falcon2520925_image_20221009234147-1024x592.png"
+    },
+    {
+        "name": "H3-22",
+        "mission": "Michibiki 6 (QZS-6)H3-22",
+        "empire": "Mitsubishi Heavy Industries",
+        "datetime": "2025-02-01T10:30:00Z",
+        "location": "Tanegashima Space Center, Japan",
+        "res_seconds": 374781.536689,
+        "hour": "10:30",
+        "date": "01/02/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/h3-22_image_20230307130808-1024x1014.jpeg"
+    },
+    {
+        "name": "Falcon 9 Block 5",
+        "mission": "Starlink Group 12-3Falcon 9 Block 5",
+        "empire": "SpaceX",
+        "datetime": "2025-02-03T13:25:00Z",
+        "location": "Cape Canaveral SFS, FL, USA",
+        "res_seconds": 558081.532471,
+        "hour": "13:25",
+        "date": "03/02/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/falcon2520925_image_20221009234147-1024x592.png"
+    },
+    {
+        "name": "Electron",
+        "mission": "IoT 4 You and Me (Kinéis 16-20)Electron",
+        "empire": "Rocket Lab",
+        "datetime": "2025-02-03T20:43:00Z",
+        "location": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
+        "res_seconds": 584361.529477,
+        "hour": "20:43",
+        "date": "03/02/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/electron_image_20190705175640-1024x683.jpeg"
+    },
+    {
+        "name": "Falcon 9 Block 5",
+        "mission": "WorldView Legion 5 & 6Falcon 9 Block 5",
+        "empire": "SpaceX",
+        "datetime": "2025-02-04T01:12:00Z",
+        "location": "Kennedy Space Center, FL, USA",
+        "res_seconds": 600501.528327,
+        "hour": "01:12",
+        "date": "04/02/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/12/falcon_9_image_20230807133459-1024x557.jpeg"
+    },
+    {
+        "name": "Long March 8A",
+        "mission": "Demo FlightLong March 8A",
+        "empire": "China Aerospace Science and Technology Corporation",
+        "datetime": "2025-02-11T10:42:00Z",
+        "location": "Wenchang Space Launch Site, People's Republic of China",
+        "res_seconds": 1239501.524468,
+        "hour": "10:42",
+        "date": "11/02/2025",
+        "img_url": "/wp-content/uploads/default-1.png"
+    },
+    {
+        "name": "Ariane 62",
+        "mission": "CSO-3Ariane 62",
+        "empire": "Arianespace",
+        "datetime": "2025-02-25 00:00:00",
+        "location": "Guiana Space Centre, French Guiana",
+        "res_seconds": 2410581.520901,
+        "hour": "00:00",
+        "date": "25/02/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/ariane_62_lifto_image_20240711132056-1024x683.jpeg"
+    },
+    {
+        "name": "Falcon 9 Block 5",
+        "mission": "Lunar Trailblazer & Nova-C IM-2Falcon 9 Block 5",
+        "empire": "SpaceX",
+        "datetime": "2025-02-26 00:00:00",
+        "location": "Kennedy Space Center, FL, USA",
+        "res_seconds": 2496981.519087,
+        "hour": "00:00",
+        "date": "26/02/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/12/falcon_9_image_20230807133459-1024x557.jpeg"
+    },
+    {
+        "name": "Falcon 9 Block 5",
+        "mission": "SPHEREx & PUNCHFalcon 9 Block 5",
+        "empire": "SpaceX",
+        "datetime": "2025-02-27 00:00:00",
+        "location": "Vandenberg SFB, CA, USA",
+        "res_seconds": 2583381.517735,
+        "hour": "00:00",
+        "date": "27/02/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/12/falcon_9_image_20230807133459-1024x557.jpeg"
+    },
+    {
+        "name": "Falcon 9 Block 5",
+        "mission": "Bandwagon 3 (Dedicated Mid-Inclination Rideshare)Falcon 9 Block 5",
+        "empire": "SpaceX",
+        "datetime": "2025-02-28 00:00:00",
+        "location": "Cape Canaveral SFS, FL, USA",
+        "res_seconds": 2669781.515143,
+        "hour": "00:00",
+        "date": "28/02/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/12/falcon_9_image_20230807133459-1024x557.jpeg"
+    },
+    {
+        "name": "Soyuz 2.1a",
+        "mission": "Progress MS-30 (91P)Soyuz 2.1a",
+        "empire": "Russian Federal Space Agency (ROSCOSMOS)",
+        "datetime": "2025-02-28 00:00:00",
+        "location": "Baikonur Cosmodrome, Republic of Kazakhstan",
+        "res_seconds": 2669781.513846,
+        "hour": "00:00",
+        "date": "28/02/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/soyuz_2.1a_image_20230805184309-1024x678.jpg"
+    },
+    {
+        "name": "Falcon 9 Block 5",
+        "mission": "Starlink Group 10-12Falcon 9 Block 5",
+        "empire": "SpaceX",
+        "datetime": "2025-02-28 00:00:00",
+        "location": "Cape Canaveral SFS, FL, USA",
+        "res_seconds": 2669781.002598,
+        "hour": "00:00",
+        "date": "28/02/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/falcon2520925_image_20221009234147-1024x592.png"
+    },
+    {
+        "name": "Electron",
+        "mission": "BlackSky Gen-3 1Electron",
+        "empire": "Rocket Lab",
+        "datetime": "2025-02-28 00:00:00",
+        "location": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
+        "res_seconds": 2669781.001201,
+        "hour": "00:00",
+        "date": "28/02/2025",
+        "img_url": "www.spacelaunchschedule.com/wp-content/uploads/2024/08/electron_image_20190705175640-1024x683.jpeg"
+    },
+    {
+        "name": "Falcon 9 Block 5",
+        "mission": "Transporter 13 (Dedicated SSO Rideshare)Falcon 9 Block 5",
+        "empire": "SpaceX",
+        "datetime": "2025-03-01 00:00:00",
+        "location": "Cape Canaveral SFS, FL, USA",
+        "res_seconds": 2756180.999421,
+        "hour": "00:00",
+        "date": "01/03/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/12/falcon_9_image_20230807133459-1024x557.jpeg"
+    },
+    {
+        "name": "Falcon 9 Block 5",
+        "mission": "Crew-10Falcon 9 Block 5",
+        "empire": "SpaceX",
+        "datetime": "2025-03-25 00:00:00",
+        "location": "Cape Canaveral SFS, FL, USA",
+        "res_seconds": 4829780.996162,
+        "hour": "00:00",
+        "date": "25/03/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/falcon2520925_image_20220301072106-1024x682.jpeg"
+    },
+    {
+        "name": "Soyuz 2.1a",
+        "mission": "Bion-M No. 2Soyuz 2.1a",
+        "empire": "Russian Federal Space Agency (ROSCOSMOS)",
+        "datetime": "2025-03-25 00:00:00",
+        "location": "Baikonur Cosmodrome, Republic of Kazakhstan",
+        "res_seconds": 4829780.994849,
+        "hour": "00:00",
+        "date": "25/03/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/soyuz_2.1a_image_20230805184309-1024x678.jpg"
+    },
+    {
+        "name": "Electron",
+        "mission": "Kinéis 21-25Electron",
+        "empire": "Rocket Lab",
+        "datetime": "2025-03-31 00:00:00",
+        "location": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
+        "res_seconds": 5348180.993476,
+        "hour": "00:00",
+        "date": "31/03/2025",
+        "img_url": "www.spacelaunchschedule.com/wp-content/uploads/2024/08/electron_image_20190705175640-1024x683.jpeg"
+    },
+    {
+        "name": "New Glenn",
+        "mission": "Blue Moon PathfinderNew Glenn",
+        "empire": "Blue Origin",
+        "datetime": "2025-03-31 00:00:00",
+        "location": "Cape Canaveral SFS, FL, USA",
+        "res_seconds": 5348180.989905,
+        "hour": "00:00",
+        "date": "31/03/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/12/new_glenn_on_lc_image_20240313170026-1024x683.jpeg"
+    },
+    {
+        "name": "Vega-C",
+        "mission": "BiomassVega-C",
+        "empire": "Arianespace",
+        "datetime": "2025-03-31 00:00:00",
+        "location": "Guiana Space Centre, French Guiana",
+        "res_seconds": 5348180.987681,
+        "hour": "00:00",
+        "date": "31/03/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/12/vega-c_image_20220713154437-724x1024.jpg"
+    },
+    {
+        "name": "GSLV Mk II",
+        "mission": "NISAR (NASA-ISRO Synthetic Aperture Radar)GSLV Mk II",
+        "empire": "Indian Space Research Organization",
+        "datetime": "2025-03-31 00:00:00",
+        "location": "Satish Dhawan Space Centre, India",
+        "res_seconds": 5348180.984872,
+        "hour": "00:00",
+        "date": "31/03/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/10/gslv2520mk2520ii_image_20190825171642-1024x710.jpg"
+    },
+    {
+        "name": "HASTE",
+        "mission": "DART AEHASTE",
+        "empire": "Rocket Lab",
+        "datetime": "2025-03-31 00:00:00",
+        "location": "Wallops Flight Facility, Virginia, USA",
+        "res_seconds": 5348180.983388,
+        "hour": "00:00",
+        "date": "31/03/2025",
+        "img_url": "www.spacelaunchschedule.com/wp-content/uploads/2024/08/electron_image_20190705175640-1024x683.jpeg"
+    },
+    {
+        "name": "Atlas V 551",
+        "mission": "Project Kuiper (Atlas V #2)Atlas V 551",
+        "empire": "United Launch Alliance",
+        "datetime": "2025-03-31 00:00:00",
+        "location": "Cape Canaveral SFS, FL, USA",
+        "res_seconds": 5348180.981272,
+        "hour": "00:00",
+        "date": "31/03/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/atlas2520v2520551_image_20190224012316-721x1024.jpeg"
+    },
+    {
+        "name": "Falcon 9 Block 5",
+        "mission": "Fram2Falcon 9 Block 5",
+        "empire": "SpaceX",
+        "datetime": "2025-03-31 00:00:00",
+        "location": "Cape Canaveral SFS, FL, USA",
+        "res_seconds": 5348180.979926,
+        "hour": "00:00",
+        "date": "31/03/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/10/falcon2520925_image_20210914155606-1024x683.jpeg"
+    },
+    {
+        "name": "Atlas V 551",
+        "mission": "ViaSat-3 EMEAAtlas V 551",
+        "empire": "United Launch Alliance",
+        "datetime": "2025-03-31 00:00:00",
+        "location": "Cape Canaveral SFS, FL, USA",
+        "res_seconds": 5348180.978668,
+        "hour": "00:00",
+        "date": "31/03/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/atlas2520v2520551_image_20190224012316-721x1024.jpeg"
+    },
+    {
+        "name": "Falcon 9 Block 5",
+        "mission": "Dragon CRS-2 SpX-32Falcon 9 Block 5",
+        "empire": "SpaceX",
+        "datetime": "2025-03-31 00:00:00",
+        "location": "Kennedy Space Center, FL, USA",
+        "res_seconds": 5348180.977416,
+        "hour": "00:00",
+        "date": "31/03/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/falcon2520925_image_20210520085648-1024x684.jpeg"
+    },
+    {
+        "name": "Soyuz 2.1a",
+        "mission": "Obzor-R No.1Soyuz 2.1a",
+        "empire": "Russian Federal Space Agency (ROSCOSMOS)",
+        "datetime": "2025-03-31 00:00:00",
+        "location": "Plesetsk Cosmodrome, Russian Federation",
+        "res_seconds": 5348180.975819,
+        "hour": "00:00",
+        "date": "31/03/2025",
+        "img_url": "https://www.spacelaunchschedule.com/wp-content/uploads/2024/08/soyuz_2.1a_image_20230805184309-1024x678.jpg"
+    }
+]
+                </pre>
+            </div>
+        </div>
+
+        <!-- Aqui você pode adicionar outras rotas seguindo o mesmo formato -->
+        {{ body|safe }}
+    </div>
+</body>
+</html>
