@@ -15,6 +15,7 @@ from typing import List
 from fastapi.responses import JSONResponse
 from fastapi.openapi.utils import get_openapi
 from fastapi.staticfiles import StaticFiles
+import uvicorn
 
 templates = Jinja2Templates(directory="src/views")
 
