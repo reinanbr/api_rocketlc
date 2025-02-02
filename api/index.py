@@ -13,7 +13,7 @@ app.add_middleware(
 )
 
 
-@app.get('/api/ssl') #response_model=List[LaunchInfo], summary="Obter informações de lançamentos", tags=["SSL"])
+@app.get('/ssl') #response_model=List[LaunchInfo], summary="Obter informações de lançamentos", tags=["SSL"])
 async def ssl_info(request: Request):
     data_launch = sll.launchs()
     return JSONResponse(data_launch)
